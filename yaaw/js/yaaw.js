@@ -89,6 +89,12 @@ var YAAW = (function() {
       $("#btnSelectStoped").live("click", function() {
         YAAW.tasks.selectStoped();
       });
+      $("#btnSelectComplete").live("click", function() {
+        YAAW.tasks.selectComplete();
+      });
+	  $("#btnSelectError").live("click", function() {
+        YAAW.tasks.selectError();
+      });
       $("#btnStartAll").live("click", function() {
         ARIA2.unpause_all();
       });
@@ -631,7 +637,22 @@ var YAAW = (function() {
         });
         this.check_select();
       },
-
+	  selectComplete: function(){
+        var _this = this;
+        this.unSelectAll(true);
+        $(".tasks-table .task[data-status=complete]").each(function(i, n) {
+          _this.select(n);
+        });
+        this.check_select();
+	  },
+	  selectError: function(){
+        var _this = this;
+        this.unSelectAll(true);
+        $(".tasks-table .task[data-status=error]").each(function(i, n) {
+          _this.select(n);
+        });
+        this.check_select();
+	  },
       selectStoped: function() {
         var _this = this;
         this.unSelectAll(true);
@@ -640,7 +661,6 @@ var YAAW = (function() {
         });
         this.check_select();
       },
-
       getSelectedGids: function() {
         var gids = new Array();
         $(".tasks-table .task.selected").each(function(i, n) {
