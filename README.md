@@ -1,6 +1,6 @@
 #YAAW for Chrome Plus
 
-在原版YAAW上增加了一些人性化改进
+在原版YAAW for Chrome上增加了一些人性化改进
 --------------------------------------------
 简单的把YAAW打包发布到Chrome上,安装之后会出现YAAW的图标.
 
