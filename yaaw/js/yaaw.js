@@ -17,7 +17,10 @@
  * from http://www.gnu.org/licenses/lgpl.txt
  *
  */
-
+_a=document.getElementsByTagName('a');
+for(var i in _a)
+	if(_a[i].nodeType==1)
+		_a[i].onclick=function(){return false;}
 var YAAW = (function() {
   var selected_tasks = false;
   var on_gid = null;
@@ -733,7 +736,7 @@ var YAAW = (function() {
     contextmenu: {
       init: function() {
         $(".task").live("contextmenu", function(ev) {
-          var contextmenu_position_y = ev.clientY
+          var contextmenu_position_y = ev.clientY;
           var contextmenu_position_x = ev.clientX;
           if ($(window).height() - ev.clientY < 200) {
             contextmenu_position_y = ev.clientY - $("#task-contextmenu").height();
@@ -785,7 +788,10 @@ var YAAW = (function() {
       },
 
       restart: function() {
-        if (on_gid) ARIA2.restart_task([on_gid, ]);
+        if (on_gid) {
+			ARIA2.restart_task([on_gid, ]);
+			this.remove(on_gid);
+		}
         on_gid = null;
       },
 

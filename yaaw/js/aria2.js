@@ -742,6 +742,7 @@ if (typeof ARIA2=="undefined"||!ARIA2) var ARIA2=(function(){
     get_status: function(gid) {
       ARIA2.request("tellStatus", [gid],
         function(result) {
+			console.log(result);
           if (!result.result) {
             main_alert("alert-error", "<strong>Error: </strong>rpc result error.", 5000);
           }
@@ -752,7 +753,8 @@ if (typeof ARIA2=="undefined"||!ARIA2) var ARIA2=(function(){
             file.title = file.path.replace(new RegExp("^"+result.dir.replace(/\\/g, "[\\/]")+"/?"), "");
             file.selected = file.selected == "true" ? true : false;
           };
-          $("#ib-status").empty().append(YAAW.tpl.ib_status(result));
+		  var url_=result.files[0].uris[0].uri;
+          $("#ib-status").empty().append(YAAW.tpl.ib_status(result)+'\nURL: <a target=_blank href='+url_+'>'+url_+'</a>');
           $("#ib-files .file-list").empty().append(YAAW.tpl.files_tree(result.files));
           if (result.bittorrent) {
             $("#ib-peers-a").show();
