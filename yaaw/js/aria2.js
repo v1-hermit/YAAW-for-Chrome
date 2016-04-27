@@ -755,7 +755,7 @@ if (typeof ARIA2=="undefined"||!ARIA2) var ARIA2=(function(){
           };
 		  var url_=result.files[0].uris[0].uri;
           $("#ib-status").empty().append(YAAW.tpl.ib_status(result)+'\nURL: <a target=_blank href='+url_+'>'+url_+'</a>');
-          $("#ib-files .file-list").empty().append(YAAW.tpl.files_tree(result.files));
+          $("#ib-files .file-list").empty().append(YAAW.tpl.files_tree(result.files)+'\n<ul>'+result.files[0].title+'</ul>');
           if (result.bittorrent) {
             $("#ib-peers-a").show();
           }
